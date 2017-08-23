@@ -5,8 +5,10 @@
 #include "TriangleIdentifier.h"
 
 using namespace std;
+using namespace triangleidentifier;
 
-namespace std
+int main()
 {
 
-};
+	return 0;
+}

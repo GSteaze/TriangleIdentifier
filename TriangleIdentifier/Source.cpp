@@ -12,8 +12,11 @@ const int kDefaultArrayValue = 0;
 
 int main()
 {
-	double userInput[3];
-	InitializeArray(userInput, kNumberOfTriangleSides, kDefaultArrayValue);
-	UserInput(userInput);
+	double sidesOfTriangle[3];
+	InitializeArray(sidesOfTriangle, kNumberOfTriangleSides, kDefaultArrayValue);
+	UserInput(sidesOfTriangle);
+	HypotenuseLocator(sidesOfTriangle);
+	double expectedHypotenuseLength = ExpectedHypotenuseLength(sidesOfTriangle);
+	bool isItRight = IsItRight(sidesOfTriangle, expectedHypotenuseLength);
 	return 0;
 }

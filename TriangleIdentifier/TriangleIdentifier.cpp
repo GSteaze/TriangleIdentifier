@@ -7,6 +7,7 @@
 using namespace std;
 
 const int kEndOfLine = 1024;
+const double kStandardOfPrecision = .01;
 
 namespace triangleidentifier
 {
@@ -55,6 +56,48 @@ namespace triangleidentifier
 		}
 
 		return userInput;
+	}
+
+	void HypotenuseLocator(double sidesOfTriangle[])
+	{
+		if ((sidesOfTriangle[2] > sidesOfTriangle[1]) && (sidesOfTriangle[2] > sidesOfTriangle[0]))
+		{
+			return;
+		}
+		else if ((sidesOfTriangle[1] > sidesOfTriangle[0]) && (sidesOfTriangle[1] > sidesOfTriangle[2]))
+		{
+			double temporaryNumber = 0;
+			temporaryNumber = sidesOfTriangle[2];
+			sidesOfTriangle[2] = sidesOfTriangle[1];
+			sidesOfTriangle[0] = temporaryNumber;
+			return;
+		}
+		else if ((sidesOfTriangle[0] > sidesOfTriangle[1]) && (sidesOfTriangle[0] > sidesOfTriangle[2]))
+		{
+			double temporaryNumber = 0;
+			temporaryNumber = sidesOfTriangle[2];
+			sidesOfTriangle[2] = sidesOfTriangle[0];
+			sidesOfTriangle[0] = temporaryNumber;
+			return;
+		}
+	}
+
+	double ExpectedHypotenuseLength(double sidesOfTriangle[])
+	{
+		double aSquaredPlusBSquared = (sidesOfTriangle[0] * sidesOfTriangle[0]) + (sidesOfTriangle[1] * sidesOfTriangle[1]);
+		
+		double expectedHypotenuseLength = 0;
+		return expectedHypotenuseLength = sqrt(aSquaredPlusBSquared);
+	}
+
+	bool IsItRight(double sidesOfTriangle[], double expectedHypotenuseLength)
+	{
+		bool isItRight = 0;
+		if (abs(sidesOfTriangle[2] - expectedHypotenuseLength) < kStandardOfPrecision)
+		{
+			return isItRight = 1;
+		}
+		else return;
 	}
 
 	void TestCases()

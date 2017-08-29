@@ -18,5 +18,6 @@ int main()
 	HypotenuseLocator(sidesOfTriangle);
 	double expectedHypotenuseLength = ExpectedHypotenuseLength(sidesOfTriangle);
 	bool isItRight = IsItRight(sidesOfTriangle, expectedHypotenuseLength);
+	DisplayResults(sidesOfTriangle, expectedHypotenuseLength, isItRight);
 	return 0;
 }

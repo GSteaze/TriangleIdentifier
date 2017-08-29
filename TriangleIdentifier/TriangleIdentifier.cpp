@@ -100,6 +100,20 @@ namespace triangleidentifier
 		else return;
 	}
 
+	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength, bool isItRight)
+	{
+		cout << "The triangle has sides " << sidesOfTriangle[0] << ", " << sidesOfTriangle[1] << ",and apparent hypotenuse " << sidesOfTriangle[2] << "." << endl
+			<< "The expected hypotenuse is " << expectedHypotenuseLength << "." << endl;
+		if (isItRight)
+		{
+			cout << "This triangle is a right triangle." << endl;
+		}
+		else if (!isItRight)
+		{
+			cout << "This triangle is not a right triangle." << endl;
+		}
+	}
+
 	void TestCases()
 	{
 		//UserInput

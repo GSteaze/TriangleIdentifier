@@ -56,6 +56,11 @@ namespace triangleidentifier
 	bool IsItRight(double sidesOfTriangle[], double expectedHypotenuseLength);
 
 	/*
+	Displays the results on the console
+	*/
+	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength, bool isItRight);
+
+	/*
 	Contains test cases for functions
 	*/
 	void TestCases();

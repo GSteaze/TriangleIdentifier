@@ -45,7 +45,7 @@ namespace triangleidentifier
 
 	int InvalidInput(double userInput)
 	{
-		bool isInvalid = cin.fail() || (userInput < '0' || userInput > '9');
+		bool isInvalid = cin.fail() || ((userInput < '0' || userInput > '9') || userInput < 0.1);
 		while (isInvalid)
 		{
 			cin.clear();
@@ -60,11 +60,7 @@ namespace triangleidentifier
 
 	void HypotenuseLocator(double sidesOfTriangle[])
 	{
-		if ((sidesOfTriangle[2] > sidesOfTriangle[1]) && (sidesOfTriangle[2] > sidesOfTriangle[0]))
-		{
-			return;
-		}
-		else if ((sidesOfTriangle[1] > sidesOfTriangle[0]) && (sidesOfTriangle[1] > sidesOfTriangle[2]))
+		if ((sidesOfTriangle[1] > sidesOfTriangle[0]) && (sidesOfTriangle[1] > sidesOfTriangle[2]))
 		{
 			double temporaryNumber = 0;
 			temporaryNumber = sidesOfTriangle[2];
@@ -78,6 +74,10 @@ namespace triangleidentifier
 			temporaryNumber = sidesOfTriangle[2];
 			sidesOfTriangle[2] = sidesOfTriangle[0];
 			sidesOfTriangle[0] = temporaryNumber;
+			return;
+		}
+		else
+		{
 			return;
 		}
 	}
@@ -121,6 +121,20 @@ namespace triangleidentifier
 		//InitializeArray
 
 		//InvalidInput
+		cout << InvalidInput(0) << endl;
+		cout << InvalidInput('a') << endl;
+		cout << InvalidInput(-1) << endl;
+		cout << InvalidInput(1) << endl;
+
+		//InitializeArray
+		double arrayToBeInitialized[3];
+		int size = 3;
+		double defaultValue = 0.0;
+		InitializeArray(arrayToBeInitialized, size, defaultValue);
+		for (int index = 0; index < 2; index++)
+		{
+			cout << arrayToBeInitialized[index] << endl;
+		}
 	}
 
 };

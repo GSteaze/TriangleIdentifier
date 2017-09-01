@@ -18,16 +18,16 @@ namespace triangleidentifier
 		double sideTwo = 0.0;
 		double sideThree = 0.0;
 
-		cout << "Please enter the three sides of the triangle" << endl
+		cout << "Please enter the three sides of the triangle." << endl
 			<< "Side One : ";
 		cin >> sideOne;
 		sideOne = InvalidInput(sideOne);
 		
-		cout << endl << "Side Two : ";
+		cout << "Side Two : ";
 		cin >> sideTwo;
 		sideTwo = InvalidInput(sideTwo);
 
-		cout << endl << "Side Three : ";
+		cout << "Side Three : ";
 		cin >> sideThree;
 		sideThree = InvalidInput(sideThree);
 		
@@ -100,17 +100,89 @@ namespace triangleidentifier
 		}
 		else return isItRight = 0;
 	}
-	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength, bool isItRight)
+
+	bool IsItIsosceles(double sidesOfTriangle[])
 	{
+		bool isItIsosceles = 0;
+		if ((sidesOfTriangle[0] == sidesOfTriangle[1])
+			&& (sidesOfTriangle[0] != sidesOfTriangle[2]))
+		{
+			return isItIsosceles = 1;
+		}
+		else if ((sidesOfTriangle[0] == sidesOfTriangle[2])
+			&& (sidesOfTriangle[0] != sidesOfTriangle[1]))
+		{
+			return isItIsosceles = 1;
+		}
+		else if ((sidesOfTriangle[2] == sidesOfTriangle[1])
+			&& (sidesOfTriangle[2] != sidesOfTriangle[0]))
+		{
+			return isItIsosceles = 1;
+		}
+		else
+		{
+			return isItIsosceles = 0;
+		}
+	}
+
+	bool IsItScalene(double sidesOfTriangle[])
+	{
+		bool isItScalene = 0;
+		if ((sidesOfTriangle[0] != sidesOfTriangle[1])
+			&& (sidesOfTriangle[0] != sidesOfTriangle[2])
+			&& (sidesOfTriangle[1] != sidesOfTriangle[2]))
+		{
+			return isItScalene = 1;
+		}
+		else
+		{
+			return isItScalene = 0;
+		}
+	}
+
+	bool IsItEquilateral(double sidesOfTriangle[])
+	{
+		bool isItEquilateral = 0;
+		if ((sidesOfTriangle[0] == sidesOfTriangle[1]) && (sidesOfTriangle[0] == sidesOfTriangle[2]))
+		{
+			return isItEquilateral = 1;
+		}
+		else
+		{
+			return isItEquilateral = 0;
+		}
+	}
+
+	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength)
+	{
+		bool isItRight = IsItRight(sidesOfTriangle, expectedHypotenuseLength);
+		bool isItIsosceles = IsItIsosceles(sidesOfTriangle);
+		bool isItScalene = IsItScalene(sidesOfTriangle);
+		bool isItEquilateral = IsItEquilateral(sidesOfTriangle);
+
 		cout << "The triangle has sides " << sidesOfTriangle[0] << ", " << sidesOfTriangle[1] << ",and apparent hypotenuse " << sidesOfTriangle[2] << "." << endl
-			<< "The expected hypotenuse is " << expectedHypotenuseLength << "." << endl;
+			<< "The expected hypotenuse is " << expectedHypotenuseLength << "." << endl
+			<< "This triangle is ";
 		if (isItRight)
 		{
-			cout << "This triangle is a right triangle." << endl;
+			cout << "a right triangle." << endl;
 		}
 		else if (!isItRight)
 		{
-			cout << "This triangle is not a right triangle." << endl;
+			cout << "not a right triangle." << endl;
+		}
+
+		if (isItIsosceles)
+		{
+			cout << "It is an isosceles triangle." << endl;
+		}
+		else if (isItScalene)
+		{
+			cout << "It is a scalene triangle." << endl;
+		}
+		else if (isItEquilateral)
+		{
+			cout << "It is an equilateral triangle." << endl;
 		}
 	}
 

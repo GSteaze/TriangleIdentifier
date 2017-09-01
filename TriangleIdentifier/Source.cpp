@@ -17,8 +17,7 @@ int main()
 	UserInput(sidesOfTriangle);
 	HypotenuseLocator(sidesOfTriangle);
 	double expectedHypotenuseLength = ExpectedHypotenuseLength(sidesOfTriangle);
-	bool isItRight = IsItRight(sidesOfTriangle, expectedHypotenuseLength);
-	DisplayResults(sidesOfTriangle, expectedHypotenuseLength, isItRight);
+	DisplayResults(sidesOfTriangle, expectedHypotenuseLength);
 	return 0;
 	//TestCases();
 }

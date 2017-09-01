@@ -56,9 +56,36 @@ namespace triangleidentifier
 	bool IsItRight(double sidesOfTriangle[], double expectedHypotenuseLength);
 
 	/*
+	Tests if the triangle is an isosceles triangle
+
+	@param sidesOfTriangle
+
+	@return returns true if there are exactly two sides of equal length
+	*/
+	bool IsItIsosceles(double sidesOfTriangle[]);
+
+	/*
+	Tests if the triangle is a scalene triangle
+
+	@param sidesOfTriangle
+
+	@return returns true if there are no sides of equal length
+	*/
+	bool IsItScalene(double sidesOfTriangle[]);
+
+	/*
+	Tests if the triangle is an equilateral triangle
+
+	@param sidesOfTriangle[]
+
+	@ return returns true if all three sides of the triangle are of equal length
+	*/
+	bool IsItEquilateral(double sidesOfTriangle[]);
+
+	/*
 	Displays the results on the console
 	*/
-	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength, bool isItRight);
+	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength);
 
 	/*
 	Contains test cases for functions

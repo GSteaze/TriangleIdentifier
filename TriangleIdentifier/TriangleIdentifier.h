@@ -28,7 +28,7 @@ namespace triangleidentifier
 
 	@param double userInput the input from the user
 	*/
-	int InvalidInput(double userInput);
+	double InvalidInput(double userInput);
 
 	/*
 	Examines the three side lengths from the user, identifies the hypotenuse, and makes the hypotenuse sidesOfTriangle[2]

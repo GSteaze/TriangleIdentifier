@@ -7,26 +7,30 @@
 using namespace std;
 
 const int kEndOfLine = 1024;
+const double kMinimumSideLength = 0.1;
 const double kStandardOfPrecision = .01;
 
 namespace triangleidentifier
 {
 	void UserInput(double sidesOfTriangle[])
 	{
-		int sideOne = 0;
-		int sideTwo = 0;
-		int sideThree = 0;
+		double sideOne = 0.0;
+		double sideTwo = 0.0;
+		double sideThree = 0.0;
 
 		cout << "Please enter the three sides of the triangle" << endl
 			<< "Side One : ";
 		cin >> sideOne;
 		sideOne = InvalidInput(sideOne);
+		
 		cout << endl << "Side Two : ";
 		cin >> sideTwo;
 		sideTwo = InvalidInput(sideTwo);
+
 		cout << endl << "Side Three : ";
-		sideThree = InvalidInput(sideThree);
 		cin >> sideThree;
+		sideThree = InvalidInput(sideThree);
+		
 
 		sidesOfTriangle[0] = sideOne;
 		sidesOfTriangle[1] = sideTwo;
@@ -43,16 +47,14 @@ namespace triangleidentifier
 		}
 	}
 
-	int InvalidInput(double userInput)
+	double InvalidInput(double userInput)
 	{
-		bool isInvalid = cin.fail() || ((userInput < '0' || userInput > '9') || userInput < 0.1);
+		bool isInvalid = (cin.fail()) || (userInput < kMinimumSideLength);
 		while (isInvalid)
 		{
 			cin.clear();
-			cin.ignore(kEndOfLine, '\n');
-			cout << "Please try again : ";
 			cin >> userInput;
-			isInvalid = cin.fail() || (userInput < '0' || userInput > '9');
+			isInvalid = (cin.fail()) || (userInput < kMinimumSideLength);
 		}
 
 		return userInput;
@@ -86,8 +88,7 @@ namespace triangleidentifier
 	{
 		double aSquaredPlusBSquared = (sidesOfTriangle[0] * sidesOfTriangle[0]) + (sidesOfTriangle[1] * sidesOfTriangle[1]);
 		
-		double expectedHypotenuseLength = 0;
-		return expectedHypotenuseLength = sqrt(aSquaredPlusBSquared);
+		return sqrt(aSquaredPlusBSquared);
 	}
 
 	bool IsItRight(double sidesOfTriangle[], double expectedHypotenuseLength)
@@ -97,9 +98,8 @@ namespace triangleidentifier
 		{
 			return isItRight = 1;
 		}
-		else return;
+		else return isItRight = 0;
 	}
-
 	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength, bool isItRight)
 	{
 		cout << "The triangle has sides " << sidesOfTriangle[0] << ", " << sidesOfTriangle[1] << ",and apparent hypotenuse " << sidesOfTriangle[2] << "." << endl
@@ -121,9 +121,14 @@ namespace triangleidentifier
 		//InitializeArray
 
 		//InvalidInput
+		cout << "Invalid Input Tests:" << endl;
+		cout << "Test 0" << endl;
 		cout << InvalidInput(0) << endl;
+		cout << "Test a" << endl;
 		cout << InvalidInput('a') << endl;
+		cout << "Test -1" << endl;
 		cout << InvalidInput(-1) << endl;
+		cout << "Test 1" << endl;
 		cout << InvalidInput(1) << endl;
 
 		//InitializeArray

@@ -12,6 +12,11 @@ const double kStandardOfPrecision = .01;
 
 namespace triangleidentifier
 {
+	/*
+	Prompts the user for the length of each side of the triangle and inputs the data
+
+	@param the array that the user input will be stored in
+	*/
 	void UserInput(double sidesOfTriangle[])
 	{
 		double sideOne = 0.0;
@@ -39,6 +44,13 @@ namespace triangleidentifier
 		return;
 	}
 
+	/*
+	Initializes the array
+
+	@param double arrayToBeInitialized [] the array that will be filled
+	@param int size the size of the array
+	@param double defaultValue the value that will be used to initialize the array
+	*/
 	void InitializeArray(double arrayToBeInitialized[], int size, double defaultValue)
 	{
 		for (int index = 0; index < size; index++)
@@ -47,12 +59,19 @@ namespace triangleidentifier
 		}
 	}
 
+	/*
+	Checks if the user input is a valid value
+
+	@param double userInput the input from the user
+	*/
 	double InvalidInput(double userInput)
 	{
 		bool isInvalid = (cin.fail()) || (userInput < kMinimumSideLength);
 		while (isInvalid)
 		{
+			cout << "Please try again : ";
 			cin.clear();
+			cin.ignore(kEndOfLine, '\n');
 			cin >> userInput;
 			isInvalid = (cin.fail()) || (userInput < kMinimumSideLength);
 		}
@@ -60,6 +79,11 @@ namespace triangleidentifier
 		return userInput;
 	}
 
+	/*
+	Examines the three side lengths from the user, identifies the hypotenuse, and makes the hypotenuse sidesOfTriangle[2]
+
+	@param sidesOfTriangle the array that contains the lengths input by the user
+	*/
 	void HypotenuseLocator(double sidesOfTriangle[])
 	{
 		if ((sidesOfTriangle[1] > sidesOfTriangle[0]) && (sidesOfTriangle[1] > sidesOfTriangle[2]))
@@ -84,6 +108,13 @@ namespace triangleidentifier
 		}
 	}
 
+	/*
+	Calculates the expected length of the hypotenuse using the pythagorean theorem
+
+	@param sidesOfTriangle[] the array that contains the reordered lengths of the triangle sides
+
+	@return expectedHypotenuseLength the expected length based on the theorem
+	*/
 	double ExpectedHypotenuseLength(double sidesOfTriangle[])
 	{
 		double aSquaredPlusBSquared = (sidesOfTriangle[0] * sidesOfTriangle[0]) + (sidesOfTriangle[1] * sidesOfTriangle[1]);
@@ -91,6 +122,13 @@ namespace triangleidentifier
 		return sqrt(aSquaredPlusBSquared);
 	}
 
+	/*
+	Compares the hypotenuse input by the user with the calculated hypotenuse to determine if the triangle is a right triangle
+
+	@param sidesOfTriangle the array that contains the reordered lengths of the triangle sides
+	@param expectedHypotenuseLength the expected length based on the pythagorean theorem
+	@return returns true if the user given input and the expected hypotenuse are the same
+	*/
 	bool IsItRight(double sidesOfTriangle[], double expectedHypotenuseLength)
 	{
 		bool isItRight = 0;
@@ -101,6 +139,13 @@ namespace triangleidentifier
 		else return isItRight = 0;
 	}
 
+	/*
+	Tests if the triangle is an isosceles triangle
+
+	@param sidesOfTriangle
+
+	@return returns true if there are exactly two sides of equal length
+	*/
 	bool IsItIsosceles(double sidesOfTriangle[])
 	{
 		bool isItIsosceles = 0;
@@ -125,6 +170,13 @@ namespace triangleidentifier
 		}
 	}
 
+	/*
+	Tests if the triangle is a scalene triangle
+
+	@param sidesOfTriangle
+
+	@return returns true if there are no sides of equal length
+	*/
 	bool IsItScalene(double sidesOfTriangle[])
 	{
 		bool isItScalene = 0;
@@ -140,6 +192,13 @@ namespace triangleidentifier
 		}
 	}
 
+	/*
+	Tests if the triangle is an equilateral triangle
+
+	@param sidesOfTriangle[]
+
+	@ return returns true if all three sides of the triangle are of equal length
+	*/
 	bool IsItEquilateral(double sidesOfTriangle[])
 	{
 		bool isItEquilateral = 0;
@@ -153,6 +212,9 @@ namespace triangleidentifier
 		}
 	}
 
+	/*
+	Displays the results on the console
+	*/
 	void DisplayResults(double sidesOfTriangle[], double expectedHypotenuseLength)
 	{
 		bool isItRight = IsItRight(sidesOfTriangle, expectedHypotenuseLength);
@@ -186,6 +248,9 @@ namespace triangleidentifier
 		}
 	}
 
+	/*
+	Contains test cases for functions
+	*/
 	void TestCases()
 	{
 		//UserInput
